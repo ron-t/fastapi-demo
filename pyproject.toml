@@ -1,0 +1,6 @@
+[tool.black]
+line-length = 120
+# include = 'app/.+\.pyi?$'
+
+[tool.pytest.ini_options]
+addopts="-n 4 --black -v"
