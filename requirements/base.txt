@@ -1,4 +1,5 @@
 fastapi==0.110.*
+orjson==3.10.*
 pydantic==2.6.*
 requests==2.31.*
 uvicorn==0.29.*
