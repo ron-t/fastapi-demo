@@ -3,7 +3,10 @@ import itertools
 
 
 def seed_kv_data() -> dict:
-    return {"key0": {"0": 0}}
+    return {
+        "key0": {"0": 0},
+        "key1": {"1": 1},
+    }
 
 
 def generate_csv_data(numrows: int, numcols: int) -> str:
