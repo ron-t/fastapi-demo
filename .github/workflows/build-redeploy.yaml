@@ -60,6 +60,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Render redeploy webhook
-        uses: joelwmale/webhook-action@2
+        uses: joelwmale/webhook-action@v2
         with:
           url: ${{ secrets.RENDER_WEBHOOK_URL }}
