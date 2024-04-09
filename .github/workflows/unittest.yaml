@@ -1,0 +1,27 @@
+name: tmp-unittest
+
+on:
+  push:
+    branches: [ deployment ]
+  workflow_dispatch:
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - run: pip install -r requirements/dev.txt
+      - name: Test with pytest
+        run: |
+          pytest --junitxml=junit/test-results.xml
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            junit/*.xml
