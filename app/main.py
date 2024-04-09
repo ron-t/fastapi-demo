@@ -12,7 +12,7 @@ app = FastAPI()
 
 @app.get("/", response_class=PlainTextResponse)  # zone apex
 def root():
-    return "root"
+    return "rootv20240409"
 
 
 @app.get("/kv/{key}")
