@@ -1,4 +1,4 @@
-name: container-build
+name: build-redeploy
 
 on:
   push:
@@ -8,11 +8,21 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ron-t/fastapi-demo
-  IMAGE_TAG: 1.${{ github.run_number }} # GITHUB_RUN_NUMBER
+  IMAGE_TAG: 1.${{ github.run_number }}
   DOCKER_BUILDKIT: 1
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: psf/black@stable
+        with:
+          options: "--check --verbose --line-length 120"
+          src: "app"
+
   build:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
