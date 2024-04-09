@@ -1,8 +1,8 @@
 name: build-redeploy
 
 on:
-  # push:
-    # branches: [ deployment ]
+  push:
+    branches: [ deployment ]
   workflow_dispatch:
 
 env:
