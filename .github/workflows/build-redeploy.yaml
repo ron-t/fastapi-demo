@@ -21,8 +21,29 @@ jobs:
           options: "--check --verbose --line-length 120"
           src: "app"
 
+  unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - run: pip install -r requirements/dev.txt
+      - name: Test with pytest
+        # add addopts="" to override pyproject.toml settings for pytest
+        run: |
+          pytest --junitxml=junit/test-results.xml -o addopts=""
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            junit/*.xml
+
   build:
-    needs: lint
+    needs: [lint, unittest]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
