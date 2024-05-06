@@ -43,6 +43,7 @@ jobs:
             junit/*.xml
 
   build:
+    if: github.ref_name == 'deployment'
     needs: [lint, unittest]
     runs-on: ubuntu-latest
     steps:
