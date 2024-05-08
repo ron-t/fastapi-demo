@@ -15,7 +15,7 @@ app.include_router(calculate.router)
 
 @app.get("/", response_class=PlainTextResponse)  # zone apex
 def root():
-    return 'v2024-05-08'
+    return "v2024-05-08"
 
 
 @app.get("/kv/{key}")
