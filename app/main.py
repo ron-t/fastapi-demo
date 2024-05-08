@@ -5,14 +5,17 @@ from fastapi import Body, FastAPI, HTTPException
 from fastapi.responses import PlainTextResponse
 
 import data
+from routes import calculate
 
 current_kv = data.seed_kv_data()
 app = FastAPI()
 
+app.include_router(calculate.router)
+
 
 @app.get("/", response_class=PlainTextResponse)  # zone apex
 def root():
-    return "rootv20240409"
+    return "v2024-05-08"
 
 
 @app.get("/kv/{key}")
