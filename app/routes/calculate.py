@@ -11,4 +11,3 @@ async def calc_gpa(input_string: str):
 
     # format string to truncate and zero-pad to 2dp
     return "{0:.2f}".format(gpa)
-    
